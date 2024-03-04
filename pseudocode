@@ -1,0 +1,77 @@
+# Pseudocode for Library Application
+
+class Book:
+    Initialize:
+        title = ""
+        author = ""
+        available = True
+
+    Function __str__():
+        availability = "available" if available else "not available"
+        Return f"{title} by {author} ({availability})"
+
+class Library:
+    Initialize:
+        books = empty list
+
+    Function add_book(book):
+        Append book to books
+
+    Function display_books():
+        Print "Books available in the library:"
+        For each book in books:
+            Print book
+
+    Function checkout_book(title):
+        For each book in books:
+            If book.title matches title (case-insensitive):
+                If book.available:
+                    Print "You have checked out '{book.title}'. Enjoy reading!"
+                    Set book.available to False
+                Else:
+                    Print "'{book.title}' is already checked out."
+                Return
+        Print "Sorry, the book you requested is not available in the library."
+
+    Function return_book(title):
+        For each book in books:
+            If book.title matches title (case-insensitive):
+                If not book.available:
+                    Print "Thank you for returning '{book.title}'."
+                    Set book.available to True
+                Else:
+                    Print "'{book.title}' is already available in the library."
+                Return
+        Print "Sorry, the book you are trying to return is not recognized."
+
+Function main():
+    Initialize library as new Library
+    Create book1 with title "Classic computer science problems in Python" and author "Cameron Buchanan"
+    Create book2 with title "Learn Python in a day" and author "Jamie Chan"
+    Create book3 with title "Coding for beginners" and author "Louie Stowell"
+    Call library.add_book(book1)
+    Call library.add_book(book2)
+    Call library.add_book(book3)
+
+    While True:
+        Print "\n1. Display available books"
+        Print "2. Checkout a book"
+        Print "3. Return a book"
+        Print "4. Quit"
+        Read user input (choice)
+
+        If choice is "1":
+            Call library.display_books()
+        Else If choice is "2":
+            Read user input (book_title)
+            Call library.checkout_book(book_title)
+        Else If choice is "3":
+            Read user input (book_title)
+            Call library.return_book(book_title)
+        Else If choice is "4":
+            Exit the loop
+        Else:
+            Print "Invalid choice. Please select a valid option."
+
+# Call the main function to start the library application
+Call main()
